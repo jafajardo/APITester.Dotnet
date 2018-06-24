@@ -1,0 +1,21 @@
+﻿{
+  "defaultAssembly": "APITester.WebAPI" ,
+  "modules": [
+    {
+      "type": "APITester.DataAccess.Service.APITesterDataService, APITester.DataAccess",
+      "services": [
+        {
+          "type": "APITester.DataAccess.Interface.IAPITesterDataService, APITester.DataAccess"
+        }
+      ]
+    },
+    {
+      "type": "APITester.Business.Service.APITesterBusinessService, APITester.Business",
+      "services": [
+        {
+          "type": "APITester.Business.Interface.IAPITesterBusinessService, APITester.Business"
+        }
+      ]
+    }
+  ]
+}
