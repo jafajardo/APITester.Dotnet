@@ -19,14 +19,18 @@ namespace APITester.DataAccess.Service
 
         public IEnumerable<EndpointDTO> GetEndpoints(string organisation, string serviceName)
         {
-            var service = _repository.GetServices(organisation).FirstOrDefault(s => s.Name == serviceName);
-            return service != null ? service.Endpoints : new List<EndpointDTO>();
+            //var service = _repository.GetServices(organisation).FirstOrDefault(s => s.Name == serviceName);
+            //return service != null ? service.Endpoints : new List<EndpointDTO>();
+
+            return new List<EndpointDTO>();
         }
 
         public IEnumerable<EnvironmentDTO> GetEnvironments(string organisation, string serviceName)
         {
-            var service = _repository.GetServices(organisation).FirstOrDefault(s => s.Name == serviceName);
-            return service != null ? service.Environments : new List<EnvironmentDTO>();
+            //var service = _repository.GetServices(organisation).FirstOrDefault(s => s.Name == serviceName);
+            //return service != null ? service.Environments : new List<EnvironmentDTO>();
+
+            return new List<EnvironmentDTO>();
         }
 
         public IEnumerable<ServiceDTO> GetServices(string organisation)
