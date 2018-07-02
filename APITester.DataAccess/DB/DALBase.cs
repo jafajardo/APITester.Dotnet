@@ -26,6 +26,17 @@ namespace APITester.DataAccess.DB
             };
         }
 
+        public SqlParameter CreateParameter(string parameterName, int value, SqlDbType dbType)
+        {
+            return new SqlParameter()
+            {
+                ParameterName = parameterName,
+                Value = value,
+                SqlDbType = dbType,
+                Direction = ParameterDirection.Input
+            };
+        }
+
         public SqlCommand GetSqlCommand(string proceedureName)
         {
             return new SqlCommand(proceedureName) { CommandType = CommandType.StoredProcedure };
