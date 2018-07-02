@@ -17,22 +17,24 @@ namespace APITester.Business.Service
             _apiTesterDataService = apiTesterDataService;
         }
 
-        public IEnumerable<Domain.Environment> GetEnvironments(string organisation, string serviceName)
+        public IEnumerable<Domain.Environment> GetEnvironments(string serviceName)
         {
-            //return _apiTesterDataService.GetEnvironments(organisation, serviceName).Select(e => e.TranslateDTOToDomain()).ToList();
-            return new List<Environment>();
+            return _apiTesterDataService.GetEnvironments(serviceName).Select(e => e.TranslateDTOToDomain()).ToList();
         }
 
         public IEnumerable<Domain.Endpoint> GetEndpoints(string organisation, string serviceName)
         {
-            //return _apiTesterDataService.GetEndpoints(organisation, serviceName).Select(e => e.TranslateDTOToDomain()).ToList();
-            return new List<Endpoint>();
+            return _apiTesterDataService.GetEndpoints(organisation, serviceName).Select(e => e.TranslateDTOToDomain()).ToList();
         }
 
         public IEnumerable<Domain.Service> GetServices(string organisation)
         {
-            //return _apiTesterDataService.GetServices(organisation).Select(s => s.TranslateDTOToDomain()).ToList();
-            return new List<Domain.Service>();
+            return _apiTesterDataService.GetServices(organisation).Select(s => s.TranslateDTOToDomain()).ToList();
+        }
+
+        public Organisation GetOrganisation(int organisationId)
+        {
+            return _apiTesterDataService.GetOrganisation(organisationId).TranslateDTOToDomain();
         }
     }
 }

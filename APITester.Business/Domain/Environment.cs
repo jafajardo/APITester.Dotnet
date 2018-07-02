@@ -6,8 +6,9 @@ namespace APITester.Business.Domain
 {
     public class Environment
     {
-        public string Host { get; set; }
-        public string Name { get; set; }
-        public bool ValidateSSL { get; set; }
+        public int EnvironmentId { get; set; }
+        public string EnvironmentName { get; set; }
+        public string EnvironmentHostURL { get; set; }
+        public bool EnvironmentEnsureTLS { get; set; }
     }
 }

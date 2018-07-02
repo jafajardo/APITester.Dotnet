@@ -11,31 +11,31 @@ namespace APITester.DataAccess.Service
     public class APITesterDataService : IAPITesterDataService
     {
         private APITesterRepository _repository;
+
         private IEnumerable<ServiceDTO> _services;
         public APITesterDataService()
         {
-            _repository = new APITesterRepository("mongodb://admin:password123@ds163300.mlab.com:63300/apitesterconfiguration", "apitesterconfiguration");
+            //_repository = new APITesterRepository("mongodb://admin:password123@ds163300.mlab.com:63300/apitesterconfiguration", "apitesterconfiguration");
         }
 
-        public IEnumerable<EndpointDTO> GetEndpoints(string organisation, string serviceName)
+        public IEnumerable<EndpointDTO> GetEndpoints(string organisationName, string serviceName)
         {
-            //var service = _repository.GetServices(organisation).FirstOrDefault(s => s.Name == serviceName);
-            //return service != null ? service.Endpoints : new List<EndpointDTO>();
-
-            return new List<EndpointDTO>();
+            return DBServiceLocator.EndpointProvider.Value.GetEndpoints(organisationName, serviceName);
         }
 
-        public IEnumerable<EnvironmentDTO> GetEnvironments(string organisation, string serviceName)
+        public IEnumerable<EnvironmentDTO> GetEnvironments(string serviceName)
         {
-            //var service = _repository.GetServices(organisation).FirstOrDefault(s => s.Name == serviceName);
-            //return service != null ? service.Environments : new List<EnvironmentDTO>();
-
-            return new List<EnvironmentDTO>();
+            return DBServiceLocator.EnvironmentProvider.Value.GetEnvironmentsByServiceName(serviceName);
         }
 
-        public IEnumerable<ServiceDTO> GetServices(string organisation)
+        public IEnumerable<ServiceDTO> GetServices(string organisationName)
         {
-            return _repository.GetServices(organisation);
+            return DBServiceLocator.ServiceDataProvider.Value.GetServicesByOrganisationName(organisationName);
+        }
+
+        public OrganisationDTO GetOrganisation(int organisationId)
+        {
+            return DBServiceLocator.OrganisationDataProvider.Value.GetOrganisationByOrganisationId(organisationId);
         }
     }
 }

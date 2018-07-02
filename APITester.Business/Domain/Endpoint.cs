@@ -6,7 +6,8 @@ namespace APITester.Business.Domain
 {
     public class Endpoint
     {
-        public string Host { get; set; }
-        public string Route { get; set; }
+        public int EndpointId { get; set; }
+        public string EndpointURL { get; set; }
+        public string EndpointMethod { get; set; }
     }
 }

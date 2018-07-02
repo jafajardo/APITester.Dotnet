@@ -35,10 +35,10 @@ namespace APITester.WebAPI.Controllers
             return Ok(_apiTesterBusinessService.GetEndpoints(organisation, serviceName).ToList());
         }
 
-        [HttpGet("environments/{organisation}/{serviceName}")]
-        public IActionResult GetEnvironments(string organisation, string serviceName)
+        [HttpGet("environments/{serviceName}")]
+        public IActionResult GetEnvironments(string serviceName)
         {
-            return Ok(_apiTesterBusinessService.GetEnvironments(organisation, serviceName).ToList());
+            return Ok(_apiTesterBusinessService.GetEnvironments(serviceName).ToList());
         }
     }
 }

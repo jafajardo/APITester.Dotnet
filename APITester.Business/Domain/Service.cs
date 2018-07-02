@@ -6,8 +6,7 @@ namespace APITester.Business.Domain
 {
     public class Service
     {
-        public string Name { get; set; }
-        public IEnumerable<Environment> Environments { get; set; }
-        public IEnumerable<Endpoint> Endpoints { get; set; }
+        public int ServiceId { get; set; }
+        public string ServiceName { get; set; }
     }
 }
