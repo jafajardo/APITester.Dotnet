@@ -10,32 +10,30 @@ namespace APITester.DataAccess.Service
 {
     public class APITesterDataService : IAPITesterDataService
     {
-        private APITesterRepository _repository;
-
-        private IEnumerable<ServiceDTO> _services;
-        public APITesterDataService()
+        private IDBServiceLocator _dbServiceLocator;
+        public APITesterDataService(IDBServiceLocator dbServiceLocator)
         {
-            //_repository = new APITesterRepository("mongodb://admin:password123@ds163300.mlab.com:63300/apitesterconfiguration", "apitesterconfiguration");
+            _dbServiceLocator = dbServiceLocator;
         }
 
         public IEnumerable<EndpointDTO> GetEndpoints(string organisationName, string serviceName)
         {
-            return DBServiceLocator.EndpointProvider.Value.GetEndpoints(organisationName, serviceName);
+            return _dbServiceLocator.GetEndpointProvider().GetEndpoints(organisationName, serviceName);
         }
 
         public IEnumerable<EnvironmentDTO> GetEnvironments(string serviceName)
         {
-            return DBServiceLocator.EnvironmentProvider.Value.GetEnvironmentsByServiceName(serviceName);
+            return _dbServiceLocator.GetEnvironmentProvider().GetEnvironmentsByServiceName(serviceName);
         }
 
         public IEnumerable<ServiceDTO> GetServices(string organisationName)
         {
-            return DBServiceLocator.ServiceDataProvider.Value.GetServicesByOrganisationName(organisationName);
+            return _dbServiceLocator.GetServiceDataProvider().GetServicesByOrganisationName(organisationName);
         }
 
         public OrganisationDTO GetOrganisation(int organisationId)
         {
-            return DBServiceLocator.OrganisationDataProvider.Value.GetOrganisationByOrganisationId(organisationId);
+            return _dbServiceLocator.GetOrganisationDataProvider().GetOrganisationByOrganisationId(organisationId);
         }
     }
 }

@@ -61,15 +61,18 @@ namespace APITester.WebAPI
 
         private IContainer ConfigureAutofacInstance(IServiceCollection services)
         {
-            var config = new ConfigurationBuilder();
-            config.AddJsonFile("autofac.json");
+            //var config = new ConfigurationBuilder();
+            //config.AddJsonFile("autofac.json");
 
-            var module = new ConfigurationModule(config.Build());
+            //var module = new ConfigurationModule(config.Build());
             var container = new ContainerBuilder();
 
-            container.RegisterType<APITesterDataService>().As<IAPITesterDataService>().InstancePerDependency();
+            container.RegisterType<APITesterDataService>().As<IAPITesterDataService>().InstancePerDependency()
+                .WithParameter("dbServiceLocator",
+                    new DBServiceLocator("Data Source=localhost;Initial Catalog=APITester;Integrated Security=True"));
             container.RegisterType<APITesterBusinessService>().As<IAPITesterBusinessService>().InstancePerDependency();
             //container.RegisterModule(module);
+
             container.Populate(services);
 
             return container.Build();

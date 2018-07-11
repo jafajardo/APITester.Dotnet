@@ -6,34 +6,58 @@ using APITester.DataAccess.Interface;
 
 namespace APITester.DataAccess.Service
 {
-    public static class DBServiceLocator
+    public class DBServiceLocator : IDBServiceLocator
     {
-        private static string _connectionString =
-            "Data Source=localhost;Initial Catalog=APITester;Integrated Security=True";
+        private static string _connectionString;
 
-        public static Lazy<OrganisationDB> OrganisationDataProvider => new Lazy<OrganisationDB>(getOrganisationDataProvider);
-        public static Lazy<ServiceDB> ServiceDataProvider => new Lazy<ServiceDB>(getServiceDataProvider);
-        public static Lazy<EnvironmentDB> EnvironmentProvider => new Lazy<EnvironmentDB>(getEnvironmentProvider);
-        public static Lazy<EndpointDB> EndpointProvider => new Lazy<EndpointDB>(getEndpointProvider);
+        //public static Lazy<OrganisationDB> GetOrganisationDataProvider => new Lazy<OrganisationDB>(getOrganisationDataProvider);
+        //public static Lazy<ServiceDB> GetServiceDataProvider => new Lazy<ServiceDB>(getServiceDataProvider);
+        //public static Lazy<EnvironmentDB> GetEnvironmentProvider => new Lazy<EnvironmentDB>(getEnvironmentProvider);
+        //public static Lazy<EndpointDB> GetEndpointProvider => new Lazy<EndpointDB>(getEndpointProvider);
 
-        private static OrganisationDB getOrganisationDataProvider()
+        public DBServiceLocator(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        public OrganisationDB GetOrganisationDataProvider()
         {
             return new OrganisationDB(_connectionString);
         }
 
-        private static ServiceDB getServiceDataProvider()
+        public ServiceDB GetServiceDataProvider()
         {
             return new ServiceDB(_connectionString);
         }
 
-        private static EnvironmentDB getEnvironmentProvider()
+        public EnvironmentDB GetEnvironmentProvider()
         {
             return new EnvironmentDB(_connectionString);
         }
 
-        private static EndpointDB getEndpointProvider()
+        public EndpointDB GetEndpointProvider()
         {
             return new EndpointDB(_connectionString);
         }
+
+        //private static OrganisationDB getOrganisationDataProvider()
+        //{
+        //    return new OrganisationDB(_connectionString);
+        //}
+
+        //private static ServiceDB getServiceDataProvider()
+        //{
+        //    return new ServiceDB(_connectionString);
+        //}
+
+        //private static EnvironmentDB getEnvironmentProvider()
+        //{
+        //    return new EnvironmentDB(_connectionString);
+        //}
+
+        //private static EndpointDB getEndpointProvider()
+        //{
+        //    return new EndpointDB(_connectionString);
+        //}
     }
 }
